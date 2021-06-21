@@ -28,6 +28,7 @@ const gameBoard = (() => {
 
   function render() {
     const tiles = document.querySelector('.tiles');
+    console.log(tiles);
     board.forEach(el => {
       let tile = document.createElement('div');
       tile.innerText = el;
@@ -44,12 +45,16 @@ const gameBoard = (() => {
   }
 
   // Event Functions
-  // Find out position within board array of a clicked button
   function placeAMarker() {
-    let content = parseInt(this.innerText);
-    let index = board.indexOf(content);
-    console.log(index);
-    board[index].innerText = 'lox';
+    // let content = parseInt(this.innerText);
+    // let index = board.indexOf(content);
+    // console.log(index);
+
+
+
+    this.innerText = 'x';
+    // Switch player and mark after a move
+
   }
   
   return {init};
