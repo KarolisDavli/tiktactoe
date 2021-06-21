@@ -19,8 +19,8 @@
 
 ## Things I learnt
 
-> Factory functions
-> Module Pattern
-> Scope and closure
-> Private variables and functions
+> Factory functions  
+> Module Pattern  
+> Scope and closure  
+> Private variables and functions  
 > Possible bugs while using constructors
