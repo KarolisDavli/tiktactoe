@@ -22,7 +22,7 @@ const gameBoard = (() => {
 
   function renderEmptyBoard() {
     for (i = 0; i < 9; i++) {
-      board.push('');
+      board.push(i);
     }
   }
 
@@ -44,8 +44,12 @@ const gameBoard = (() => {
   }
 
   // Event Functions
+  // Find out position within board array of a clicked button
   function placeAMarker() {
-    alert(board.indexOf(2))
+    let content = parseInt(this.innerText);
+    let index = board.indexOf(content);
+    console.log(index);
+    board[index].innerText = 'lox';
   }
   
   return {init};
