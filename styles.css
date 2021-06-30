@@ -30,3 +30,17 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+
+
+/* GamePlay Classes */
+
+
+.player-x {
+  background-image: url(img/xmark.png);
+  background-size: cover;
+}
+
+.player-o {
+  background-image: url(img/omark.png);
+  background-size: cover;
+}

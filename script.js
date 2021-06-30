@@ -5,7 +5,6 @@ const player = (playerNumber, playerName) => {
 };
 
 
-
 const gameFlow = (() => {
 
 })();
@@ -13,6 +12,7 @@ const gameFlow = (() => {
 
 const gameBoard = (() => {
   let board = [];
+  let currentPlayer = 'player-x';
 
   function init() {
     renderEmptyBoard();
@@ -28,11 +28,10 @@ const gameBoard = (() => {
 
   function render() {
     const tiles = document.querySelector('.tiles');
-    console.log(tiles);
     board.forEach(el => {
       let tile = document.createElement('div');
-      tile.innerText = el;
       tile.classList.add('single-tile');
+      tile.dataset.number = el;
       tiles.appendChild(tile);
     })
   }
@@ -40,23 +39,26 @@ const gameBoard = (() => {
   function bindEvents() {
     const tileButton = document.querySelectorAll('.single-tile');
     tileButton.forEach(button => {
-      button.addEventListener('click', placeAMarker);
+      button.addEventListener('click', placeMarker);
     })
   }
 
   // Event Functions
-  function placeAMarker() {
-    // let content = parseInt(this.innerText);
-    // let index = board.indexOf(content);
-    // console.log(index);
+  function placeMarker(e) {
+    let index = e.target.getAttribute('data-number');
 
-
-
-    this.innerText = 'x';
-    // Switch player and mark after a move
-
+    if (currentPlayer === 'player-x') {
+      e.target.classList.add('player-x');
+      currentPlayer = 'player-o';
+    } else {
+      e.target.classList.add('player-o');
+      currentPlayer = 'player-x'
+      console.log(board[index]);
+    }
   }
   
+
+
   return {init};
 })();
 
