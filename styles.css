@@ -44,3 +44,7 @@ h2 {
   background-image: url(img/omark.png);
   background-size: cover;
 }
+
+.taken {
+  background-color: brown;
+}

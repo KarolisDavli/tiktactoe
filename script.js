@@ -47,6 +47,14 @@ const gameBoard = (() => {
   function placeMarker(e) {
     let index = e.target.getAttribute('data-number');
 
+
+    if (e.target.classList.contains('player-x') ||
+        e.target.classList.contains('player-o')) {
+          alert('This tile is taken')
+          return
+        }
+
+
     if (currentPlayer === 'player-x') {
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
