@@ -24,14 +24,10 @@ const gameBoard = (() => {
 
   return {
     initBoard,
-    // board: board,
-    // player: currentPlayer
+    board: board
   }
 
 })();
-
-gameBoard.initBoard();
-
 
 const game = (() => {
   let currentPlayer = 'player-x';
@@ -47,8 +43,21 @@ const game = (() => {
     })
   }
 
-  // Event Functions
   function placeMarker(e) {
+    const index = e.target.dataset.number;
+    console.log(index);
+    console.log(gameBoard.board);
+    console.log(gameBoard.board[index]);
+
+
+    // Man reik sukeist, kad paspaudus ant tile pasikeistu ne tik jo
+    // Klase, bet taip pat pats array butu pakoreguotas su x arba o
+    // Tam tikroje array vietoje
+    // Ir tada jau galima tikrinti laimetoja
+
+    // Kazkodel neuzskaito pirmo kliko ir pakeicia array[index] tik jau
+    // Pot kito veiksto
+
     if (e.target.classList.contains('player-x') ||
         e.target.classList.contains('player-o')) {
           alert('This tile is taken')
@@ -56,13 +65,22 @@ const game = (() => {
         }
 
     if (currentPlayer === 'player-x') {
+      gameBoard.board[index] = 'x';
+      console.log(gameBoard.board[index]);
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
     } else {
+      gameBoard.board[index] = 'o';
       e.target.classList.add('player-o');
       currentPlayer = 'player-x'
     }
   }
+
+  function checkIfOver() {
+
+  }
+
+
 
   return {
     initGame
@@ -70,4 +88,6 @@ const game = (() => {
 
 })();
 
+
+gameBoard.initBoard();
 game.initGame();
