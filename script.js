@@ -29,6 +29,7 @@ const gameBoard = (() => {
 
 })();
 
+
 const game = (() => {
   let currentPlayer = 'player-x';
   
@@ -45,18 +46,6 @@ const game = (() => {
 
   function placeMarker(e) {
     const index = e.target.dataset.number;
-    console.log(index);
-    console.log(gameBoard.board);
-    console.log(gameBoard.board[index]);
-
-
-    // Man reik sukeist, kad paspaudus ant tile pasikeistu ne tik jo
-    // Klase, bet taip pat pats array butu pakoreguotas su x arba o
-    // Tam tikroje array vietoje
-    // Ir tada jau galima tikrinti laimetoja
-
-    // Kazkodel neuzskaito pirmo kliko ir pakeicia array[index] tik jau
-    // Pot kito veiksto
 
     if (e.target.classList.contains('player-x') ||
         e.target.classList.contains('player-o')) {
@@ -65,8 +54,10 @@ const game = (() => {
         }
 
     if (currentPlayer === 'player-x') {
+      // let playerOne = [];
+      // playerOne.push(index);
+      // console.log(playerOne);
       gameBoard.board[index] = 'x';
-      console.log(gameBoard.board[index]);
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
     } else {
@@ -74,10 +65,27 @@ const game = (() => {
       e.target.classList.add('player-o');
       currentPlayer = 'player-x'
     }
+
+    console.log(gameBoard.board);
+    console.log(gameBoard.board[index]);
+
+    
+
+    checkIfOver();
+    
   }
 
   function checkIfOver() {
+    // Check if tie
+    
 
+    // console.log(gameBoard.board.match('/^[0-9]+$/'));
+    console.log(!gameBoard.board.some(isNaN));
+
+
+    // if (gameBoard.board[0] == 'x' && gameBoard.board[1] == 'x' && gameBoard.board[2] == 'x') {
+    //   console.log('Player 1 wins');
+    // }
   }
 
 
