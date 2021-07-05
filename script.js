@@ -8,7 +8,7 @@ const gameBoard = (() => {
 
   function renderEmptyBoard() {
     for (i = 0; i < 9; i++) {
-      board.push(i);
+      board.push('');
     }
   }
 
@@ -24,9 +24,9 @@ const gameBoard = (() => {
 
   return {
     initBoard,
-    board: board
+    board
   }
-
+  
 })();
 
 
@@ -49,7 +49,7 @@ const game = (() => {
 
     if (e.target.classList.contains('player-x') ||
         e.target.classList.contains('player-o')) {
-          alert('This tile is taken')
+          alert('This tile is taken');
           return
         }
 
@@ -60,32 +60,34 @@ const game = (() => {
       gameBoard.board[index] = 'x';
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
+
     } else {
       gameBoard.board[index] = 'o';
       e.target.classList.add('player-o');
-      currentPlayer = 'player-x'
+      currentPlayer = 'player-x';
     }
 
     console.log(gameBoard.board);
-    console.log(gameBoard.board[index]);
 
+
+    checkIfOver(gameBoard.board);
     
-
-    checkIfOver();
     
   }
 
-  function checkIfOver() {
+  function checkIfOver(arr) {
     // Check if tie
+    // if ((gameBoard.board.some(isNaN))) {
+    //   console.log(true);
+    // }
+    console.log(arr.includes(0));
+    // console.log(gameBoard.board.match('/^[0-9]+$/'));
+    // console.log(!boardArray.some(isNaN));
     
 
-    // console.log(gameBoard.board.match('/^[0-9]+$/'));
-    console.log(!gameBoard.board.some(isNaN));
-
-
-    // if (gameBoard.board[0] == 'x' && gameBoard.board[1] == 'x' && gameBoard.board[2] == 'x') {
-    //   console.log('Player 1 wins');
-    // }
+    if (gameBoard.board[0] == 'x' && gameBoard.board[1] == 'x' && gameBoard.board[2] == 'x') {
+      console.log('Player 1 wins');
+    }
   }
 
 
