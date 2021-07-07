@@ -8,7 +8,7 @@ const gameBoard = (() => {
 
   function renderEmptyBoard() {
     for (i = 0; i < 9; i++) {
-      board.push('');
+      board.push(i);
     }
   }
 
@@ -32,6 +32,8 @@ const gameBoard = (() => {
 
 const game = (() => {
   let currentPlayer = 'player-x';
+  let moveCount = 0;
+
   
   function initGame() {
     bindEvents();
@@ -60,34 +62,33 @@ const game = (() => {
       gameBoard.board[index] = 'x';
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
+      moveCount++;
 
     } else {
       gameBoard.board[index] = 'o';
       e.target.classList.add('player-o');
       currentPlayer = 'player-x';
+      moveCount++;
     }
-
+    console.log(moveCount);
     console.log(gameBoard.board);
 
 
     checkIfOver(gameBoard.board);
-    
+    checkIfTie(moveCount);
     
   }
 
-  function checkIfOver(arr) {
-    // Check if tie
-    // if ((gameBoard.board.some(isNaN))) {
-    //   console.log(true);
-    // }
-    console.log(arr.includes(0));
-    // console.log(gameBoard.board.match('/^[0-9]+$/'));
-    // console.log(!boardArray.some(isNaN));
-    
-
-    if (gameBoard.board[0] == 'x' && gameBoard.board[1] == 'x' && gameBoard.board[2] == 'x') {
-      console.log('Player 1 wins');
+  function checkIfTie(count) {
+    if (count == 9) {
+      setTimeout(function() {
+        alert('Game is tie, no one wins');
+      }, 500);
     }
+  }
+
+  function checkIfOver() {
+   
   }
 
 
