@@ -56,9 +56,6 @@ const game = (() => {
         }
 
     if (currentPlayer === 'player-x') {
-      // let playerOne = [];
-      // playerOne.push(index);
-      // console.log(playerOne);
       gameBoard.board[index] = 'x';
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
@@ -87,8 +84,16 @@ const game = (() => {
     }
   }
 
-  function checkIfOver() {
-   
+  function checkIfOver(board) {
+    console.log(board);
+    console.log(board[0]);
+    console.log(board[1]);
+    console.log(board[2]);
+   if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
+     console.log('winner');
+   } else {
+     console.log('no winner yet');
+   }
   }
 
 
