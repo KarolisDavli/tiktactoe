@@ -80,23 +80,19 @@ const game = (() => {
     if (count == 9) {
       setTimeout(function() {
         alert('Game is tie, no one wins');
-      }, 500);
+      }, 200);
     }
   }
 
   function checkIfOver(board) {
-    console.log(board);
-    console.log(board[0]);
-    console.log(board[1]);
-    console.log(board[2]);
    if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
-     console.log('winner');
+     setTimeout(function() {
+       alert('Game over, player x won')
+     }, 200)
    } else {
      console.log('no winner yet');
    }
   }
-
-
 
   return {
     initGame
