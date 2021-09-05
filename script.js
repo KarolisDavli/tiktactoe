@@ -68,20 +68,30 @@ const game = (() => {
       currentPlayer = 'player-x';
       moveCount++;
     }
-    console.log(moveCount);
-    console.log(gameBoard.board);
 
+    console.log(typeof gameBoard.board);
 
     checkIfOver(gameBoard.board);
     checkIfTie(moveCount);
     
   }
 
-  function checkIfTie(count) {
-    if (count == 9) {
-      setTimeout(function() {
-        alert('Game is tie, no one wins');
-      }, 200);
+  let arrBoard = Object.keys(gameBoard.board);
+
+  // function checkIfTie(count) {
+  //   if (count == 9) {
+  //     setTimeout(function() {
+  //       alert('Game is tie, no one wins');
+  //     }, 200);
+  //   }
+  // }
+  
+  function checkIfTie() {
+    console.log(gameBoard.board.every(i => (typeof i === 'string')));
+    // console.log(gameBoard.board.includes(Number));
+    // console.log(typeof gameBoard.board[1]);
+    if (gameBoard.board.every(i => (typeof i === 'string')) == true) {
+      alert('Tie');
     }
   }
 
@@ -100,10 +110,9 @@ const game = (() => {
       setTimeout(function() {
         alert('Game over, player x won')
       }, 200)
-      gameBoard.renderEmptyBoard();
     } else if (board[0] == 'o' && board[1] == 'o' && board[2] == 'o') {
       setTimeout(function() {
-        alert('Game over, player x won')
+        alert('Game over, player o won')
       }, 200)
     }
    }
