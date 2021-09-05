@@ -24,7 +24,8 @@ const gameBoard = (() => {
 
   return {
     initBoard,
-    board
+    board,
+    renderEmptyBoard
   }
   
 })();
@@ -84,15 +85,30 @@ const game = (() => {
     }
   }
 
+  // function checkIfOver(board) {
+  //  if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
+  //    setTimeout(function() {
+  //      alert('Game over, player x won')
+  //    }, 200)
+  //  } else {
+  //    console.log('no winner yet');
+  //  }
+  // }
+
   function checkIfOver(board) {
-   if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
-     setTimeout(function() {
-       alert('Game over, player x won')
-     }, 200)
-   } else {
-     console.log('no winner yet');
+    if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
+      setTimeout(function() {
+        alert('Game over, player x won')
+      }, 200)
+      gameBoard.renderEmptyBoard();
+    } else if (board[0] == 'o' && board[1] == 'o' && board[2] == 'o') {
+      setTimeout(function() {
+        alert('Game over, player x won')
+      }, 200)
+    }
    }
-  }
+
+
 
   return {
     initGame
