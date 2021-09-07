@@ -31,10 +31,21 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* Button */
+#start {
+  text-align: center;
+  padding: 1rem 2rem;
+  margin: auto;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  border: 1px black solid;
+}
+
 
 /* GamePlay Classes */
-
-
 .player-x {
   background-image: url(img/xmark.png);
   background-size: cover;

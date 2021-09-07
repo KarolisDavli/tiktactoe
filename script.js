@@ -1,5 +1,20 @@
+const start = document.getElementById('start');
+let gameOn = false;
+let currentPlayer = 'player-x';
+
+start.addEventListener("click", function() {
+  // Start button
+  if (gameOn == false) {
+    gameBoard.initBoard();
+    game.initGame();
+    gameOn = true;
+  } else {
+    alert('Game already started');
+  }
+});
+
 const gameBoard = (() => {
-  const board = [];
+  let board = [];
 
   function initBoard() {
     renderEmptyBoard();
@@ -22,20 +37,29 @@ const gameBoard = (() => {
     })
   }
 
+  function resetBoard() {
+    currentPlayer = 'player-x'
+    const tiles = document.querySelectorAll('.single-tile');
+    tiles.forEach(el => {  
+      el.remove();
+    })
+    for (i = 0; i < 9; i++) {
+      board.pop(i);
+    }
+    initBoard();
+    game.initGame();
+  }
+
   return {
     initBoard,
     board,
-    renderEmptyBoard
+    renderEmptyBoard,
+    resetBoard
   }
-  
 })();
 
-
 const game = (() => {
-  let currentPlayer = 'player-x';
-  let moveCount = 0;
 
-  
   function initGame() {
     bindEvents();
   }
@@ -60,71 +84,85 @@ const game = (() => {
       gameBoard.board[index] = 'x';
       e.target.classList.add('player-x');
       currentPlayer = 'player-o';
-      moveCount++;
 
     } else {
       gameBoard.board[index] = 'o';
       e.target.classList.add('player-o');
       currentPlayer = 'player-x';
-      moveCount++;
     }
-
-    console.log(typeof gameBoard.board);
 
     checkIfOver(gameBoard.board);
-    checkIfTie(moveCount);
-    
+    checkIfTie();
   }
 
-  let arrBoard = Object.keys(gameBoard.board);
-
-  // function checkIfTie(count) {
-  //   if (count == 9) {
-  //     setTimeout(function() {
-  //       alert('Game is tie, no one wins');
-  //     }, 200);
-  //   }
-  // }
-  
   function checkIfTie() {
-    console.log(gameBoard.board.every(i => (typeof i === 'string')));
-    // console.log(gameBoard.board.includes(Number));
-    // console.log(typeof gameBoard.board[1]);
-    if (gameBoard.board.every(i => (typeof i === 'string')) == true) {
-      alert('Tie');
+    let tie = gameBoard.board.every(i => (typeof i === 'string'));
+    if (tie == true) {
+      setTimeout(function() {
+        alert('Tie, no one wins');
+      }, 200);
+      gameBoard.resetBoard();
     }
   }
-
-  // function checkIfOver(board) {
-  //  if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
-  //    setTimeout(function() {
-  //      alert('Game over, player x won')
-  //    }, 200)
-  //  } else {
-  //    console.log('no winner yet');
-  //  }
-  // }
 
   function checkIfOver(board) {
     if (board[0] == 'x' && board[1] == 'x' && board[2] == 'x') {
-      setTimeout(function() {
-        alert('Game over, player x won')
-      }, 200)
-    } else if (board[0] == 'o' && board[1] == 'o' && board[2] == 'o') {
-      setTimeout(function() {
-        alert('Game over, player o won')
-      }, 200)
-    }
+      playerXWin();
+    } else if (board[3] =='x' && board[4] == 'x' && board[5] == 'x') {
+      playerXWin();
+    } else if (board[6] == 'x' && board[7] == 'x' && board[8] == 'x') {
+      playerXWin();
+    } else if (board[0] == 'x' && board[3] == 'x' && board[6] == 'x') {
+      playerXWin();
+    } else if (board[1] == 'x' && board[4] == 'x' && board[7] == 'x') {
+      playerXWin();
+    } else if (board[2] == 'x' && board[5] == 'x' && board[8] == 'x') {
+      playerXWin();
+    } else if (board[0] == 'x' && board[4] == 'x' && board[8] == 'x') {
+      playerXWin();
+    } else if (board[0] == 'x' && board[4] == 'x' && board[6] == 'x') {
+      playerXWin();
+    } else if (board[2] == 'x' && board[4] == 'x' && board[6] == 'x') {
+      playerXWin();
+    }  
+    // Check player o
+      else if (board[0] == 'o' && board[1] == 'o' && board[2] == 'o') {
+        playerOWin();
+      } else if (board[3] =='o' && board[4] == 'o' && board[5] == 'o') {
+        playerOWin();
+      } else if (board[6] == 'o' && board[7] == 'o' && board[8] == 'o') {
+        playerOWin();
+      } else if (board[0] == 'o' && board[3] == 'o' && board[6] == 'o') {
+        playerOWin();
+      } else if (board[1] == 'o' && board[4] == 'o' && board[7] == 'o') {
+        playerOWin();
+      } else if (board[2] == 'o' && board[5] == 'o' && board[8] == 'o') {
+        playerOWin();
+      } else if (board[0] == 'o' && board[4] == 'o' && board[8] == 'o') {
+        playerOWin();
+      } else if (board[0] == 'o' && board[4] == 'o' && board[6] == 'o') {
+        playerOWin();
+      } else if (board[2] == 'o' && board[4] == 'o' && board[6] == 'o') {
+        playerOWin();
+      }
    }
 
+   function playerXWin() {
+    setTimeout(function() {
+      alert('Game over, player x won')
+      gameBoard.resetBoard();
+    }, 200)
+   }
 
+   function playerOWin() {
+    setTimeout(function() {
+      alert('Game over, player o won')
+      gameBoard.resetBoard();
+    }, 200)
+   }
 
   return {
     initGame
   }
-
 })();
 
-
-gameBoard.initBoard();
-game.initGame();
