@@ -1,6 +1,6 @@
 # Project: Tic Tac Toe ❌ ⭕️
 
-> [Live app: Pending](https://github.com/unotreal/tiktactoe)
+> [Live app: ](https://karolisdavli.github.io/tiktactoe/)
 
 ## Assignment
 
